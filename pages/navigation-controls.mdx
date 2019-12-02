@@ -1,0 +1,97 @@
+<!-- 👋 Editing this file? Need help? → https://github.com/framer/api-docs/blob/master/CONTRIBUTING.md -->
+
+import {
+  APIEnum,
+  APIEnumField,
+  Template,
+} from "../components"
+
+export default Template("Navigation Controls")
+
+# Navigation Controls
+
+<span className="lead">
+  Navigation in Framer X is also built in to the API. Learn
+  how to customize and create flows through the
+  useNavigation hook.
+</span>
+
+## useNavigation
+
+Similarly to Action Controls, navigation is also handled
+through code.
+The useNavigation hook can be called from within a function component or a code override.
+
+```jsx
+const navigation = useNavigation()
+```
+
+### Transitions
+
+All of the transitions in the Framer X UI are also available from code.
+
+```jsx
+navigation.goBack()
+
+navigation.instant(<Component />)
+
+navigation.fade(<Component />)
+
+navigation.push(<Component />)
+navigation.push(<Component />, { appearFrom: "top" }) // optional
+
+navigation.modal(<Component />)
+navigation.modal(<Component />, {
+  backdropColor: "rgba(0,0,0,.2)",
+})
+
+navigation.overlay(<Component />)
+navigation.overlay(<Component />, {
+  backdropColor: "red",
+  appearFrom: "left",
+})
+
+navigation.flip(<Component />)
+navigation.flip(<Component />, { appearFrom: "right" })
+
+// Read more about defining custom transitions in the next section
+navigation.customTransition(
+  <Component />,
+  userTransitionDefinition
+)
+```
+
+---
+
+## NavigationTransition
+
+All built-in transition are defined using the same API as custom transitions. The definition contains eight properties which are all optional.
+
+`enter` and `exit` are used by the Navigation component to apply a transform and opacity to the incoming and outgoing screens. The enter props are applied to the incoming screen when presented. At the end of the transition animation all enter props will be normalized. This means that an x of 200 will end at 0. And an opacity of 0, will animate to 1. The exit props are applied to the outgoing screen.
+
+```jsx
+    interface NavigationTransition {
+      // Defines the begin state of the incoming screen wrapper.
+        enter?: Partial<FrameProps>
+        // Defines the end state of the outgoing screen wrapper.
+        exit?: Partial<FrameProps>
+        // Defines the position and size of the incoming screen wrapper. Defaults to top, right, bottom, and left of 0.
+        position?: NavigationTransitionPosition
+
+        // The animation defaults.
+        animation?: Transition
+
+        // Defines whether the incoming screen should render over the current context, like an overlay or modal. Defaults to false.
+        overCurrentContext?: boolean
+        // Defines the backdrop color when the incoming screen is rendered over the current context. Defaults to the iOS dim color.
+        backdropColor?: string
+        // Defines whether a tap in the background should dismiss the screen presented over the current context. Defaults to true.
+        goBackOnTapOutside?: boolean
+        // Defines whether the backface of the incoming and outgoing screens should be visible, necessary for certain 3D transitions. Defaults to true.
+        backfaceVisible?: boolean
+    }
+```
+
+By default incoming screens will take the full width and height. Using the position prop you can change this. The position allows for setting `top`, `right`, `bottom`, `left`, and `center` of the incoming screen.
+
+When creating an overlay or modal transition, you have to set `overCurrentContext` to `true`. This means that the outgoing screen will be visible at the end of the transition. The backdrop color can be changed to dim the background.

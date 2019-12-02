@@ -38,7 +38,12 @@ const LibraryMenu = () => {
             <MenuItem className="home" href="/pages/index.mdx" title="Introduction" />
             <MenuItem className="guide" href="/pages/tutorial.mdx" title="Tutorial" />
             <MenuItem className="examples" href="/pages/examples.mdx" title="Examples" />
-            <MenuItem className="guide" href="https://www.framer.com/books/framer-guide-to-react/" title="ES6 and React" external />
+            <MenuItem
+                className="guide"
+                href="https://www.framer.com/books/framer-guide-to-react/"
+                title="ES6 and React"
+                external
+            />
 
             <SubTitle name="Library" />
             <MenuItem className="frame" href="/pages/frame.mdx" title="Frame" />
@@ -55,6 +60,12 @@ const LibraryMenu = () => {
             <MenuItem className="data" href="/pages/data.mdx" title="Data &amp; Overrides" />
             <MenuItem className="canvas-components" href="/pages/canvas-components.mdx" title="CanvasComponents" />
             <MenuItem className="property-controls" href="/pages/property-controls.mdx" title="PropertyControls" />
+            <MenuItem className="action-controls" href="/pages/action-controls.mdx" title="ActionControls" />
+            <MenuItem
+                className="navigation-controls"
+                href="/pages/navigation-controls.mdx"
+                title="NavigationControls"
+            />
             <MenuItem className="render-target" href="/pages/render-target.mdx" title="RenderTarget" />
         </Menu>
     )
