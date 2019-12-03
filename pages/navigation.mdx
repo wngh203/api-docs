@@ -8,19 +8,26 @@ import {
 
 export default Template("Navigation Controls")
 
-# Navigation Controls
+# Navigation
 
 <span className="lead">
-  Navigation in Framer X is also built in to the API. Learn
-  how to customize and create flows through the
-  useNavigation hook.
+  Navigation in Framer is built on top of the Framer API.
+  Learn how to customize and create flows easily.
 </span>
+
+Expressing flows is an important part of the prototyping process, and easy to set up in Framer. Continue reading to learn how to set up your own flows, or create something new for your project.
+
+---
+
+## Navigate
+
+The Navigate action in Framer is one of the default actions you can add. Navigate provides a number of customizable options, such as Target, Transition, and more.
+
+---
 
 ## useNavigation
 
-Similarly to Action Controls, navigation is also handled
-through code.
-The useNavigation hook can be called from within a function component or a code override.
+Similarly to Action Controls, navigation is also handled through code. The useNavigation hook can be called from within a function component, a code override, or a custom action.
 
 ```jsx
 const navigation = useNavigation()
@@ -28,7 +35,7 @@ const navigation = useNavigation()
 
 ### Transitions
 
-All of the transitions in the Framer X UI are also available from code.
+All of the transitions in the Framer UI are also available from code. All transitions require a `ComponentInstance` as the first argument other than the `goBack()` transition. Certain transitions can also accept more arguments to customize it's behavior. If you're using the `useNavigation` hook with custom actions, it might be helpful to pass a `ComponentInstance` to the custom action through `ActionControls`.
 
 ```jsx
 navigation.goBack()
@@ -43,16 +50,16 @@ navigation.push(<Component />, { appearFrom: "top" }) // optional
 navigation.modal(<Component />)
 navigation.modal(<Component />, {
   backdropColor: "rgba(0,0,0,.2)",
-})
+}) // optional
 
 navigation.overlay(<Component />)
 navigation.overlay(<Component />, {
   backdropColor: "red",
   appearFrom: "left",
-})
+}) // optional
 
 navigation.flip(<Component />)
-navigation.flip(<Component />, { appearFrom: "right" })
+navigation.flip(<Component />, { appearFrom: "right" }) // optional
 
 // Read more about defining custom transitions in the next section
 navigation.customTransition(
@@ -63,18 +70,19 @@ navigation.customTransition(
 
 ---
 
-## NavigationTransition
+## Custom Transitions
 
-All built-in transition are defined using the same API as custom transitions. The definition contains eight properties which are all optional.
-
-`enter` and `exit` are used by the Navigation component to apply a transform and opacity to the incoming and outgoing screens. The enter props are applied to the incoming screen when presented. At the end of the transition animation all enter props will be normalized. This means that an x of 200 will end at 0. And an opacity of 0, will animate to 1. The exit props are applied to the outgoing screen.
+All built-in transitions are defined using the same API as custom transitions. The definition contains eight properties which are all optional.
 
 ```jsx
     interface NavigationTransition {
-      // Defines the begin state of the incoming screen wrapper.
+
+        // Defines the begin state of the incoming screen wrapper.
         enter?: Partial<FrameProps>
+
         // Defines the end state of the outgoing screen wrapper.
         exit?: Partial<FrameProps>
+
         // Defines the position and size of the incoming screen wrapper. Defaults to top, right, bottom, and left of 0.
         position?: NavigationTransitionPosition
 
@@ -83,14 +91,20 @@ All built-in transition are defined using the same API as custom transitions. Th
 
         // Defines whether the incoming screen should render over the current context, like an overlay or modal. Defaults to false.
         overCurrentContext?: boolean
+
         // Defines the backdrop color when the incoming screen is rendered over the current context. Defaults to the iOS dim color.
         backdropColor?: string
+
         // Defines whether a tap in the background should dismiss the screen presented over the current context. Defaults to true.
         goBackOnTapOutside?: boolean
+
         // Defines whether the backface of the incoming and outgoing screens should be visible, necessary for certain 3D transitions. Defaults to true.
         backfaceVisible?: boolean
+
     }
 ```
+
+`enter` and `exit` are used by the Navigation component to apply a transform and opacity to the incoming and outgoing screens. The enter props are applied to the incoming screen when presented. At the end of the transition animation all enter props will be normalized. This means that an x of 200 will end at 0. And an opacity of 0, will animate to 1. The exit props are applied to the outgoing screen.
 
 By default incoming screens will take the full width and height. Using the position prop you can change this. The position allows for setting `top`, `right`, `bottom`, `left`, and `center` of the incoming screen.
 

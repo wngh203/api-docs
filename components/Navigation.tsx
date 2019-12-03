@@ -60,12 +60,8 @@ const LibraryMenu = () => {
             <MenuItem className="data" href="/pages/data.mdx" title="Data &amp; Overrides" />
             <MenuItem className="canvas-components" href="/pages/canvas-components.mdx" title="CanvasComponents" />
             <MenuItem className="property-controls" href="/pages/property-controls.mdx" title="PropertyControls" />
-            <MenuItem className="action-controls" href="/pages/action-controls.mdx" title="ActionControls" />
-            <MenuItem
-                className="navigation-controls"
-                href="/pages/navigation-controls.mdx"
-                title="NavigationControls"
-            />
+            <MenuItem className="actions" href="/pages/actions.mdx" title="Actions" />
+            <MenuItem className="navigation" href="/pages/navigation.mdx" title="Navigation" />
             <MenuItem className="render-target" href="/pages/render-target.mdx" title="RenderTarget" />
         </Menu>
     )
