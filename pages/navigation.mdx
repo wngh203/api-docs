@@ -75,33 +75,33 @@ navigation.customTransition(
 All built-in transitions are defined using the same API as custom transitions. The definition contains eight properties which are all optional.
 
 ```jsx
-    interface NavigationTransition {
+interface NavigationTransition {
 
-        // Defines the begin state of the incoming screen wrapper.
-        enter?: Partial<FrameProps>
+  // Defines the position and size of the incoming screen wrapper. Defaults to top, right, bottom, and left of 0.
+  position?: NavigationTransitionPosition
 
-        // Defines the end state of the outgoing screen wrapper.
-        exit?: Partial<FrameProps>
+  // The animation defaults.
+  animation?: Transition
 
-        // Defines the position and size of the incoming screen wrapper. Defaults to top, right, bottom, and left of 0.
-        position?: NavigationTransitionPosition
+  // Defines whether the incoming screen should render over the current context, like an overlay or modal. Defaults to false.
+  overCurrentContext?: boolean
 
-        // The animation defaults.
-        animation?: Transition
+  // Defines the backdrop color when the incoming screen is rendered over the current context. Defaults to the iOS dim color.
+  backdropColor?: string
 
-        // Defines whether the incoming screen should render over the current context, like an overlay or modal. Defaults to false.
-        overCurrentContext?: boolean
+  // Defines whether a tap in the background should dismiss the screen presented over the current context. Defaults to true.
+  goBackOnTapOutside?: boolean
 
-        // Defines the backdrop color when the incoming screen is rendered over the current context. Defaults to the iOS dim color.
-        backdropColor?: string
+  // Defines whether the backface of the incoming and outgoing screens should be visible, necessary for certain 3D transitions. Defaults to true.
+  backfaceVisible?: boolean
 
-        // Defines whether a tap in the background should dismiss the screen presented over the current context. Defaults to true.
-        goBackOnTapOutside?: boolean
+  // Defines the begin state of the incoming screen wrapper.
+  enter?: Partial<FrameProps>
 
-        // Defines whether the backface of the incoming and outgoing screens should be visible, necessary for certain 3D transitions. Defaults to true.
-        backfaceVisible?: boolean
+  // Defines the end state of the outgoing screen wrapper.
+  exit?: Partial<FrameProps>
 
-    }
+}
 ```
 
 `enter` and `exit` are used by the Navigation component to apply a transform and opacity to the incoming and outgoing screens. The enter props are applied to the incoming screen when presented. At the end of the transition animation all enter props will be normalized. This means that an x of 200 will end at 0. And an opacity of 0, will animate to 1. The exit props are applied to the outgoing screen.
