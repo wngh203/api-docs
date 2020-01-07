@@ -34,17 +34,19 @@ Apart from the default actions, custom actions can also be added to accomodate f
 
 ## Custom Events
 
+<div>
+
 Custom events can be added to code components through [Property Controls](https://www.framer.com/api/property-controls/) in Framer. Added events will appear in the Prototyping panel when selected.
+
+To add a custom event to the Framer UI, use the `addPropertyControls` function, and give your event a `type` of `ControlType.EventHandler`.
+
+</div>
 
 ```jsx
 export function Button({ myCustomEvent }) {
   return <button onClick={() => myCustomEvent()} />
 }
-```
 
-To add a custom event to the Framer UI, use the `addPropertyControls` function, and give your event a `type` of `ControlType.EventHandler`.
-
-```jsx
 addPropertyControls(MyComponent, {
   myCustomEvent: { type: ControlType.EventHandler },
 })
@@ -54,15 +56,17 @@ addPropertyControls(MyComponent, {
 
 ## Custom Actions
 
-Framer also provides an API to create and attach your own custom Actions.
+<div>
 
-```jsx
-import { ActionHandler } from "framer"
-```
+Framer also provides an API to create and attach your own custom Actions.
 
 When using the `ActionHandler` type on a function, you'll see the option to attach this action in the Events UI panel on the right (after selecting an event).
 
+</div>
+
 ```jsx
+import { ActionHandler } from "framer"
+
 export function customAction(): ActionHandler {
   return () => {
     console.log("I'm a custom action")
@@ -80,7 +84,17 @@ export function customAction(): ActionHandler {
 
 ## Action Controls
 
+<div>
+
 Not only can you create custom actions, but you can make them more dynamic by giving your user control over what the events might actually do by using the `addActionControls` function.
+
+To give your custom action Action Controls, import both the `addActionControls` function and the `ControlType` type from the `framer` library.
+
+The Control Types you can add follow the same controls you can add through Property Controls. [Read more](https://www.framer.com/api/property-controls/#adding-controls) about Property Controls to see what type of controls you can add to actions.
+
+In the example above, we've added a String Control Type to our `customAction` we created earlier. We can now use this through `props` within our Action Control.
+
+</div>
 
 ```jsx
 import {
@@ -88,26 +102,16 @@ import {
   ControlType,
   ActionHandler,
 } from "framer"
-```
 
-To give your custom action Action Controls, import both the `addActionControls` function and the `ControlType` type from the `framer` library.
-
-```jsx
 addActionControls(customAction, "Title", {
   text: {
     type: ControlType.String,
   },
 })
-```
 
-The Control Types you can add follow the same controls you can add through Property Controls. [Read more](https://www.framer.com/api/property-controls/#adding-controls) about Property Controls to see what type of controls you can add to actions.
-
-```jsx
 export function customAction({ text }): ActionHandler {
   return () => {
     console.log(text)
   }
 }
 ```
-
-In the example above, we've added a String Control Type to our `customAction` we created earlier. We can now use this through `props` within our Action Control.
