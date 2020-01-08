@@ -167,94 +167,78 @@ navigation.customTransition(
 
 ### position:
 
-placeholder text
+Defines the position and size of the incoming screen wrapper. Defaults to `top`, `right`, `bottom`, and `left` of `0`.
 
 ```jsx
-  // Defines the position and size of the incoming screen wrapper. Defaults to top, right, bottom, and left of 0.
-  position?: NavigationTransitionPosition
+position?: NavigationTransitionPosition
 ```
 
 ---
 
 ### animation:
 
-placeholder text
+The [animation](/api/animation/) defaults
 
 ```jsx
-  // The animation defaults.
-  animation?: Transition
+animation?: Transition
 ```
 
 ---
 
 ### overCurrentContext:
 
-placeholder text
+/Defines whether the incoming screen should render over the current context, like an overlay or modal. Defaults to `false`.
 
 ```jsx
-  // Defines whether the incoming screen should render over the current context, like an overlay or modal. Defaults to false.
-  overCurrentContext?: boolean
+overCurrentContext?: boolean
 ```
 
 ---
 
 ### backdropColor:
 
-placeholder text
+Defines the backdrop color when the incoming screen is rendered over the current context. Defaults to `rgba(4,4,15,0.4)`.
 
 ```jsx
-  // Defines the backdrop color when the incoming screen is rendered over the current context. Defaults to the iOS dim color.
-  backdropColor?: string
+backdropColor?: string
 ```
 
 ---
 
 ### goBackOnTapOutside:
 
-placeholder text
+Defines whether a tap in the background should dismiss the screen presented over the current context. Defaults to `true`.
 
 ```jsx
-  // Defines whether a tap in the background should dismiss the screen presented over the current context. Defaults to true.
-  goBackOnTapOutside?: boolean
+goBackOnTapOutside?: boolean
 ```
 
 ---
 
 ### backfaceVisible:
 
-placeholder text
+Defines whether the backface of the incoming and outgoing screens should be visible, necessary for certain 3D transitions. Defaults to `true`.
 
 ```jsx
-  // Defines whether the backface of the incoming and outgoing screens should be visible, necessary for certain 3D transitions. Defaults to true.
-  backfaceVisible?: boolean
+backfaceVisible?: boolean
 ```
 
 ---
 
 ### enter:
 
-placeholder text
+Defines the begin state of the incoming screen wrapper.
 
 ```jsx
-  // Defines the begin state of the incoming screen wrapper.
-  enter?: Partial<FrameProps>
+enter?: Partial<FrameProps>
 ```
 
 ---
 
 ### exit:
 
-placeholder text
+Defines the end state of the outgoing screen wrapper.
 
 ```jsx
-  // Defines the end state of the outgoing screen wrapper.
-  exit?: Partial<FrameProps>
+exit?: Partial<FrameProps>
 ```
-
----
-
-`enter` and `exit` are used by the Navigation component to apply a transform and opacity to the incoming and outgoing screens. The enter props are applied to the incoming screen when presented. At the end of the transition animation all enter props will be normalized. This means that an x of 200 will end at 0. And an opacity of 0, will animate to 1. The exit props are applied to the outgoing screen.
-
-By default incoming screens will take the full width and height. Using the position prop you can change this. The position allows for setting `top`, `right`, `bottom`, `left`, and `center` of the incoming screen.
-
-When creating an overlay or modal transition, you have to set `overCurrentContext` to `true`. This means that the outgoing screen will be visible at the end of the transition. The backdrop color can be changed to dim the background.
