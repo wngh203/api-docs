@@ -144,7 +144,7 @@ navigation.flip(<Component />, { appearFrom: "right" }) // optional
 
 ## Custom Transitions
 
-Just a little bit about custom transitions.
+Not only can you use the built in default transitions, but you have the ability to create your own.
 
 ### Custom Transition
 
@@ -165,80 +165,180 @@ navigation.customTransition(
 
 ---
 
-### position:
+<h3>position: <span style={{ color: "#808080" }}>NavigationTransitionPosition</span></h3>
 
 Defines the position and size of the incoming screen wrapper. Defaults to `top`, `right`, `bottom`, and `left` of `0`.
 
-```jsx
-position?: NavigationTransitionPosition
+```jsx highlight=4,5,6,8,10,11
+export function CustomAction(): ActionHandler {
+  const navigation = useNavigation()
+
+  const CustomTransition: NavigationTransition = {
+    position: { top: 0, right: 0, bottom: 0, left: 0 },
+  }
+  return () => {
+    navigation.customTransition(
+      <Component />
+      CustomTransition
+    )
+  }
+}
 ```
 
 ---
 
-### animation:
+<h3>animation: <span style={{ color: "#808080" }}>Transition</span></h3>
 
-The [animation](/api/animation/) defaults
+[Animation](/api/animation/) options that set the transition properties for the animation.
 
-```jsx
-animation?: Transition
+```jsx highlight=4,5,6,7,8,9,12,14,15
+export function CustomAction(): ActionHandler {
+  const navigation = useNavigation()
+
+  const CustomTransition: NavigationTransition = {
+    animation: {
+        type: "spring"
+        stiffness: 300,
+        damping: 100,
+    }
+  }
+  return () => {
+    navigation.customTransition(
+      <Component />
+      CustomTransition
+    )
+  }
+}
 ```
 
 ---
 
-### overCurrentContext:
+<h3>overCurrentContext: <span style={{ color: "#808080" }}>boolean</span></h3>
 
-/Defines whether the incoming screen should render over the current context, like an overlay or modal. Defaults to `false`.
+Defines whether the incoming screen should render over the current context, like an overlay or modal. Defaults to `false`.
 
-```jsx
-overCurrentContext?: boolean
+```jsx highlight=4,5,6,8,10,11
+export function CustomAction(): ActionHandler {
+  const navigation = useNavigation()
+
+  const CustomTransition: NavigationTransition = {
+    overCurrentContext: true,
+  }
+  return () => {
+    navigation.customTransition(
+      <Component />
+      CustomTransition
+    )
+  }
+}
 ```
 
 ---
 
-### backdropColor:
+<h3>backdropColor: <span style={{ color: "#808080" }}>string</span></h3>
 
 Defines the backdrop color when the incoming screen is rendered over the current context. Defaults to `rgba(4,4,15,0.4)`.
 
-```jsx
-backdropColor?: string
+```jsx highlight=4,5,6,8,10,11
+export function CustomAction(): ActionHandler {
+  const navigation = useNavigation()
+
+  const CustomTransition: NavigationTransition = {
+    backdropColor: "rgba(4,4,15,0.4)",
+  }
+  return () => {
+    navigation.customTransition(
+      <Component />
+      CustomTransition
+    )
+  }
+}
 ```
 
 ---
 
-### goBackOnTapOutside:
+<h3>goBackOnTapOutside: <span style={{ color: "#808080" }}>boolean</span></h3>
 
 Defines whether a tap in the background should dismiss the screen presented over the current context. Defaults to `true`.
 
-```jsx
-goBackOnTapOutside?: boolean
+```jsx highlight=4,5,6,8,10,11
+export function CustomAction(): ActionHandler {
+  const navigation = useNavigation()
+
+  const CustomTransition: NavigationTransition = {
+    goBackOnTapOutside: true,
+  }
+  return () => {
+    navigation.customTransition(
+      <Component />
+      CustomTransition
+    )
+  }
+}
 ```
 
 ---
 
-### backfaceVisible:
+<h3>backfaceVisible: <span style={{ color: "#808080" }}>boolean</span></h3>
 
 Defines whether the backface of the incoming and outgoing screens should be visible, necessary for certain 3D transitions. Defaults to `true`.
 
-```jsx
-backfaceVisible?: boolean
+```jsx highlight=4,5,6,8,10,11
+export function CustomAction(): ActionHandler {
+  const navigation = useNavigation()
+
+  const CustomTransition: NavigationTransition = {
+    backfaceVisible: true,
+  }
+  return () => {
+    navigation.customTransition(
+      <Component />
+      CustomTransition
+    )
+  }
+}
 ```
 
 ---
 
-### enter:
+<h3>enter: <span style={{ color: "#808080" }}>Partial&lt;FrameProps&gt;</span></h3>
 
 Defines the begin state of the incoming screen wrapper.
 
-```jsx
-enter?: Partial<FrameProps>
+```jsx highlight=4,5,6,8,10,11
+export function CustomAction(): ActionHandler {
+  const navigation = useNavigation()
+
+  const CustomTransition: NavigationTransition = {
+    enter: { y: "100%" },
+  }
+  return () => {
+    navigation.customTransition(
+      <Component />
+      CustomTransition
+    )
+  }
+}
 ```
 
 ---
 
-### exit:
+<h3>exit: <span style={{ color: "#808080" }}>Partial&lt;FrameProps&gt;</span></h3>
 
 Defines the end state of the outgoing screen wrapper.
 
-```jsx
-exit?: Partial<FrameProps>
+```jsx highlight=4,5,6,8,10,11
+export function CustomAction(): ActionHandler {
+  const navigation = useNavigation()
+
+  const CustomTransition: NavigationTransition = {
+    exit: { y: "100%" },
+  }
+  return () => {
+    navigation.customTransition(
+      <Component />
+      CustomTransition
+    )
+  }
+}
 ```
